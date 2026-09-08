@@ -15,12 +15,14 @@ struct Args {
   size_t length;
   size_t nreps;
   bool block;
+  long verbose;
 };
 
 static struct argp_option options[] = {
   {"length", 'n', "size_t", 0, "Length of each vector"},
   {"nreps", 'r', "size_t", 0, "Number of repetitions"},
   {"block", 'b', NULL, 0, "Compute block dot products (versus a single dot product)"},
+  {"verbose", 'v', "(0|1)", 0, "Whether to print the resolution and header information (for easier data extraction)"},
 };
 
 static error_t parse_opt (int key, char *arg, struct argp_state *state)
@@ -31,6 +33,7 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
     args->length = 100;
     args->nreps = 10;
     args->block = false;
+    args->verbose = 1;
     break;
   case 'n':
     args->length = strtol(arg, NULL, 10);
@@ -40,6 +43,9 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
     break;
   case 'b':
     args->block = true;
+    break;
+  case 'v':
+    args->verbose = strtol(arg, NULL, 10);
     break;
   default:
     return ARGP_ERR_UNKNOWN;
@@ -152,7 +158,7 @@ int main(int argc, char **argv) {
   argp_parse(&argp, argc, argv, 0, 0, &args);
   size_t n = args.length;
 
-  {
+  if (args.verbose) {
     double time_res = get_clock_resolution();
     printf("Clock resolution is %g\n", time_res);
   }
@@ -166,7 +172,7 @@ int main(int argc, char **argv) {
       b[i] = 1./(i+1);
     }
 
-    printf("Name\tflops\ttime\tMflops/s\n");
+    if (args.verbose) printf("Name\tflops\ttime\tMflops/s\n");
     REPORT_DOT(dot_ref);
     REPORT_DOT(dot_opt);
 
@@ -178,7 +184,7 @@ int main(int argc, char **argv) {
     double *c = malloc(J * K * sizeof(double));
     double *c_ref = malloc(J * K * sizeof(double));
 
-    printf("Name    \tflops\ttime\tMflops/s\n");
+    if (args.verbose) printf("Name    \tflops\ttime\tMflops/s\n");
     init_bdot(args.length, a, n, 1, b, 1, n);
     REPORT_BDOT(bdot_ref, c_ref, K, 1, c_ref);
 
