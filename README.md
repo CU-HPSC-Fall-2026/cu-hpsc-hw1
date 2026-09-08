@@ -43,6 +43,7 @@ Investigate how much performance impact this technique has.  Explain your thinki
 * Can this code change the numerically computed result?
 * Can you extend this technique to increase performance further (longer vector registers and/or more instruction-level parallelism)?
 * Can you make the unrolling factor `2` a compile-time constant, perhaps by using an inner loop?
+* How does manual unrolling compare to using the `reduction` parameter for `#pragma omp simd`?
 * Could that factor be a run-time parameter?
 
 ### Can't the compiler do this?
@@ -107,6 +108,7 @@ void bdot_ref(size_t n, const double *a, const double *b, double *c) {
 
 Suppose the sets are of size `J=8` and `K=4` (so you'll be computing 32 inner products in total).
 Use your understanding of computer architecture and optimization to make a prediction of the best achievable performance for this operation.
+If done before running the dot benchmarks, put the expectations in terms of the performance of a single dot product on the same machine.
 Explain your rationale in `Report.ipynb` and **commit and push to your repository no later than 2026-09-11 (Friday)**.
 
 ### Part 3: What can you achieve?
