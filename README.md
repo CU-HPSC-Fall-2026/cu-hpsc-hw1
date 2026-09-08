@@ -71,6 +71,7 @@ This may result in unacceptable answers in other parts of your code.
 
 Suppose we have many pairwise dot products to compute.
 You can think of this as performing the matrix product $A^T B$ where $A$ and $B$ are tall matrices of shape $(n, J)$ and $(n, K)$ respectively and the columns of each matrix are the vectors in question.
+
 $$
 A^T B = \begin{bmatrix}
 \text{---} &  a_1  & \text{---}\\
