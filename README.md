@@ -74,18 +74,18 @@ You can think of this as performing the matrix product $A^T B$ where $A$ and $B$
 
 $$
 A^T B = \begin{bmatrix}
-\text{---} &  a_1  & \text{---}\\
+\text{---} &  a_0  & \text{---}\\
 & \vdots & \\
-\text{---} &  a_J  & \text{---}\\
+\text{---} &  a_{J-1}  & \text{---}\\
 \end{bmatrix}
 \begin{bmatrix}
 \vert & & \vert \\
-b_1 & \dots & b_K \\
+b_0 & \dots & b_{K-1} \\
 \vert & & \vert
 \end{bmatrix}
 = \begin{bmatrix}
-\langle a_1, b_1 \rangle & \langle a_1, b_2 \rangle & \dots \\
-\langle a_2, b_1 \rangle & \langle a_2, b_2 \rangle & \dots \\
+\langle a_0, b_0 \rangle & \langle a_0, b_1 \rangle & \dots \\
+\langle a_1, b_0 \rangle & \langle a_1, b_1 \rangle & \dots \\
 \vdots & \vdots & \ddots \\
 \end{bmatrix}
 $$
