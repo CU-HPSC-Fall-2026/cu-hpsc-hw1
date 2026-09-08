@@ -79,9 +79,9 @@ A^T B = \begin{bmatrix}
 \text{---} &  a_J  & \text{---}\\
 \end{bmatrix}
 \begin{bmatrix}
-\vert & \dots & \vert \\
+\vert & & \vert \\
 b_1 & \dots & b_K \\
-\vert & \dots & \vert
+\vert & & \vert
 \end{bmatrix}
 = \begin{bmatrix}
 \langle a_1, b_1 \rangle & \langle a_1, b_2 \rangle & \dots \\
